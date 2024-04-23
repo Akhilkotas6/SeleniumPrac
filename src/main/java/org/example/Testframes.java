@@ -1,6 +1,7 @@
 package org.example;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -38,6 +39,21 @@ public class Testframes {
 
         driver.switchTo().defaultContent();
         driver.findElement(By.xpath("//input[@id=\"name\"]")).sendKeys("moved from frm1 to main frame");
+        Thread.sleep(5000);
+
+        driver.switchTo().frame("frm3");
+        driver.switchTo().frame("frm2");
+        driver.findElement(By.id("firstName")).sendKeys("frmae3");
+        //driver.switchTo().frame("frm3");
+
+        //driver.switchTo().frame("frm1");
+        WebElement menuddele = driver.findElement(By.id("selectnav1"));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();",menuddele);
+        Thread.sleep(3000);
+        Select menudd = new Select(menuddele);
+        menudd.selectByVisibleText("- Dropdowns");
+
         Thread.sleep(5000);
 
         driver.quit();
